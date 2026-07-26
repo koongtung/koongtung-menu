@@ -3,6 +3,9 @@
 Static, mobile-first digital menu for Koong Tung seafood boil restaurant.
 No online ordering — view only, for QR-on-table use.
 
+**Live site:** https://koongtung.github.io/koongtung-menu/
+**Print QR page:** https://koongtung.github.io/koongtung-menu/qr.html
+
 ## Update the menu or prices
 
 1. Edit `assets/js/menu-data.js` (plain JS array — one item per dish, with
