@@ -1,0 +1,391 @@
+/*
+  Koong Tung digital menu — data source of truth.
+  To update the menu or prices: edit this file and refresh/redeploy. No build step needed.
+  currency values are numbers in Thai Baht (THB).
+*/
+
+const RESTAURANT = {
+  name: { th: "กุ้งถัง Koong Tung", en: "Koong Tung", zh: "Koong Tung 泰式虾桶" },
+  tagline: {
+    th: "ซีฟู้ดต้มยำสไตล์อเมริกัน แห่งแรกในไทย ตั้งแต่ปี 2015",
+    en: "First American-style Seafood Boil in Thailand · Since 2015",
+    zh: "泰国首家美式海鲜煮 · 始于2015年"
+  },
+  phone: "086-761-5558",
+  facebook: "กุ้งถัง - Koongtung",
+  social: "@koongtung",
+  logo: "assets/img/brand/logo.jpg",
+  colors: {
+    primary: "#d2202c",
+    secondary: "#1b3a6b",
+    cream: "#faf3e3"
+  },
+  branches: [
+    { th: "ตลาดนัดเลี่ยงด่วนรามอินทรา", en: "Liang Duan Ram Inthra Market", zh: "Liang Duan Ram Inthra 市场" },
+    { th: "ตลาดนัดรถไฟศรีนครินทร์ (โซนหน้า เปิดทุกวัน / โซนใน 2 ชั้น เปิด พฤ-อา)", en: "Srinakarin Train Night Market (front zone daily / 2nd floor Thu-Sun)", zh: "Srinakarin 火车夜市（前区每日/2楼周四至周日）" },
+    { th: "ถนนบรรทัดทอง", en: "Banthadthong Road", zh: "Banthadthong 路" },
+    { th: "U-Village มหาวิทยาลัยธรรมศาสตร์", en: "U-Village, Thammasat University", zh: "法政大学 U-Village" },
+    { th: "พาราไดซ์ พาร์ค ชั้น G ใกล้ KFC", en: "Paradise Park, G Floor, near KFC", zh: "Paradise Park G层，近KFC" }
+  ]
+};
+
+const CATEGORIES = [
+  { id: "signature", icon: "🦐", name: { th: "ซิกเนเจอร์กุ้งถัง", en: "Signature Koong Tung", zh: "招牌虾桶" } },
+  { id: "seafood",   icon: "🦀", name: { th: "ซีฟู้ดสด เลือกเดี่ยว", en: "Fresh Seafood (à la carte)", zh: "新鲜海鲜（单点）" } },
+  { id: "mixed",     icon: "🍤", name: { th: "ชุดรวมซีฟู้ด", en: "Mixed Seafood Sets", zh: "海鲜拼盘套餐" } },
+  { id: "bangbang",  icon: "🌶️", name: { th: "คอมโบซอสแบงแบง", en: "Bang Bang Sauce Combo", zh: "Bang Bang 酱组合" } },
+  { id: "appetizer", icon: "🍟", name: { th: "ของทานเล่น", en: "Appetizers", zh: "开胃小吃" } },
+  { id: "rice",      icon: "🍚", name: { th: "ข้าว & เส้น พิเศษ", en: "Rice & Noodle Specials", zh: "特色饭面" } },
+  { id: "set",       icon: "🎁", name: { th: "เซ็ตพิเศษ", en: "Special Sets", zh: "特别套餐" } },
+  { id: "addon",     icon: "🥗", name: { th: "เพิ่มเติม & เครื่องเคียง", en: "Add-ons & Sides", zh: "加点 / 配菜" } },
+  { id: "beverage",  icon: "🥤", name: { th: "เครื่องดื่ม", en: "Beverages", zh: "饮品" } }
+];
+
+// tag id -> label per language, used for filter chips
+const TAGS = {
+  recommended: { th: "แนะนำ", en: "Recommended", zh: "推荐" },
+  bestseller:  { th: "ขายดี", en: "Best Seller", zh: "畅销" },
+  new:         { th: "ใหม่", en: "New", zh: "新品" },
+  spicy:       { th: "ปรับเผ็ดได้", en: "Adjustable Spice", zh: "辣度可调" },
+  seafood:     { th: "ซีฟู้ด", en: "Seafood", zh: "海鲜" },
+  chicken:     { th: "ไก่", en: "Chicken", zh: "鸡肉" },
+  sharing:     { th: "ทานหลายคน", en: "Good for Sharing", zh: "多人分享" },
+  vegetarian:  { th: "มังสวิรัติได้", en: "Veg-friendly Side", zh: "素食友好" },
+  alcohol:     { th: "แอลกอฮอล์", en: "Alcohol", zh: "酒精" },
+  friedsnack:  { th: "ของทอด", en: "Fried Snack", zh: "炸物" }
+};
+
+const ITEMS = [
+  // ---------- SIGNATURE ----------
+  {
+    id: "koong-tung", category: "signature",
+    name: { th: "กุ้งถัง", en: "Koong Tung (Boiled Shrimp Bucket)", zh: "虾桶（泰式水煮虾）" },
+    desc: {
+      th: "กุ้งขาวต้มสไตล์อเมริกัน เสิร์ฟพร้อมซอสแบงแบงสูตรต้นตำรับ เลือกระดับความเผ็ดได้",
+      en: "American-style boiled white shrimp served with our original Bang Bang sauce. Choose your spice level.",
+      zh: "美式水煮白虾，配招牌 Bang Bang 酱，可选辣度。"
+    },
+    img: "assets/img/dishes/page8.jpg",
+    tags: ["recommended", "bestseller", "seafood", "spicy"],
+    variants: [
+      { label: { th: "S (1 คน) 200g", en: "S (1 pax) 200g", zh: "S（1人）200克" }, price: 199 },
+      { label: { th: "M (2 คน) 400g", en: "M (2 pax) 400g", zh: "M（2人）400克" }, price: 299 },
+      { label: { th: "L (3-4 คน) 600g", en: "L (3-4 pax) 600g", zh: "L（3-4人）600克" }, price: 399 },
+      { label: { th: "XL (4-5 คน) 800g", en: "XL (4-5 pax) 800g", zh: "XL（4-5人）800克" }, price: 499 }
+    ]
+  },
+
+  // ---------- FRESH SEAFOOD ----------
+  {
+    id: "fresh-crab", category: "seafood",
+    name: { th: "ปูม้าเนื้อแน่นไข่เต็มตัว", en: "Fresh Crab", zh: "新鲜肉蟹（满籽）" },
+    desc: { th: "ปูม้าสดเนื้อแน่น เสิร์ฟพร้อมซอสแบงแบง", en: "Fresh sea crab served with special sauce.", zh: "新鲜肉蟹，配特制酱汁。" },
+    img: "assets/img/dishes/page9.jpg", tags: ["seafood"],
+    variants: [
+      { label: { th: "M 500g", en: "M 500g", zh: "M 500克" }, price: 399 },
+      { label: { th: "L 1kg", en: "L 1kg", zh: "L 1公斤" }, price: 599 }
+    ]
+  },
+  {
+    id: "fresh-river-shrimp", category: "seafood",
+    name: { th: "กุ้งฝอยแม่น้ำสด", en: "Fresh River Shrimp", zh: "新鲜河虾" },
+    desc: { th: "กุ้งแม่น้ำสดตัวโต เสิร์ฟพร้อมซอสแบงแบง", en: "Fresh river shrimp with special sauce.", zh: "新鲜大河虾，配特制酱汁。" },
+    img: "assets/img/dishes/page9.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "ต่อชุด", en: "per serving", zh: "每份" }, price: 399 }]
+  },
+  {
+    id: "fresh-mussel", category: "seafood",
+    name: { th: "หอยแมลงภู่ตัวใหญ่", en: "Fresh Mussel", zh: "新鲜大青口贝" },
+    desc: { th: "หอยแมลงภู่ตัวใหญ่ เสิร์ฟพร้อมซอสแบงแบง", en: "Large fresh mussels with special sauce.", zh: "大只新鲜青口贝，配特制酱汁。" },
+    img: "assets/img/dishes/page9.jpg", tags: ["seafood"],
+    variants: [
+      { label: { th: "S 200g", en: "S 200g", zh: "S 200克" }, price: 199 },
+      { label: { th: "M 400g", en: "M 400g", zh: "M 400克" }, price: 299 },
+      { label: { th: "L 600g", en: "L 600g", zh: "L 600克" }, price: 399 }
+    ]
+  },
+  {
+    id: "fresh-squid", category: "seafood",
+    name: { th: "ปลาหมึกสด", en: "Fresh Squid", zh: "新鲜鱿鱼" },
+    desc: { th: "ปลาหมึกสด 400g เสิร์ฟพร้อมซอสแบงแบง", en: "Fresh squid 400g with special sauce.", zh: "新鲜鱿鱼400克，配特制酱汁。" },
+    img: "assets/img/dishes/page9.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "400g", en: "400g", zh: "400克" }, price: 299 }]
+  },
+  {
+    id: "fresh-clam", category: "seafood",
+    name: { th: "หอยลาย", en: "Fresh Clam", zh: "新鲜花甲" },
+    desc: { th: "หอยลายสด เสิร์ฟพร้อมซอสแบงแบง", en: "Fresh clams with special sauce.", zh: "新鲜花甲，配特制酱汁。" },
+    img: "assets/img/dishes/page9.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "ต่อชุด", en: "per serving", zh: "每份" }, price: 299 }]
+  },
+
+  // ---------- MIXED SEAFOOD SETS ----------
+  {
+    id: "mixed-seafood-m", category: "mixed",
+    name: { th: "ชุดรวมซีฟู้ด (M)", en: "Mixed Seafood (M)", zh: "海鲜拼盘（M）" },
+    desc: { th: "กุ้งขาว, กุ้งแม่น้ำ, หอยลาย, หอยแมลงภู่ — ทานได้ 2 คน", en: "Shrimp, river shrimp, clam, mussel — good for 2.", zh: "白虾、河虾、花甲、青口贝 — 2人份。" },
+    img: "assets/img/dishes/page10.jpg", tags: ["seafood", "sharing"],
+    variants: [{ label: { th: "M", en: "M", zh: "M" }, price: 399 }]
+  },
+  {
+    id: "mixed-seafood-l-squid", category: "mixed",
+    name: { th: "ชุดรวมซีฟู้ด L (ปลาหมึก)", en: "Mixed Seafood L (Squid)", zh: "海鲜拼盘 L（加鱿鱼）" },
+    desc: { th: "กุ้งขาว, กุ้งแม่น้ำ, หอยลาย, หอยแมลงภู่, ปลาหมึก — ทานได้ 3-4 คน", en: "Shrimp, river shrimp, clam, mussel, squid — good for 3-4.", zh: "白虾、河虾、花甲、青口贝、鱿鱼 — 3-4人份。" },
+    img: "assets/img/dishes/page10.jpg", tags: ["seafood", "sharing"],
+    variants: [{ label: { th: "L", en: "L", zh: "L" }, price: 499 }]
+  },
+  {
+    id: "mixed-seafood-l-crab", category: "mixed",
+    name: { th: "ชุดรวมซีฟู้ด L (ปู)", en: "Mixed Seafood L (Crab)", zh: "海鲜拼盘 L（加螃蟹）" },
+    desc: { th: "กุ้งขาว, กุ้งแม่น้ำ, หอยลาย, หอยแมลงภู่, ปูหรือปลาหมึก — ทานได้ 3-4 คน", en: "Shrimp, river shrimp, clam, mussel, crab or squid — good for 3-4.", zh: "白虾、河虾、花甲、青口贝、螃蟹或鱿鱼 — 3-4人份。" },
+    img: "assets/img/dishes/page11.jpg", tags: ["seafood", "sharing"],
+    variants: [{ label: { th: "L", en: "L", zh: "L" }, price: 499 }]
+  },
+  {
+    id: "mixed-seafood-xl", category: "mixed",
+    name: { th: "ชุดรวมซีฟู้ด (XL)", en: "Mixed Seafood (XL)", zh: "海鲜拼盘（XL）" },
+    desc: { th: "กุ้งขาว, กุ้งแม่น้ำ, หอยลาย, หอยแมลงภู่, ปลาหมึก, ปู — ทานได้ 4-5 คน", en: "Shrimp, river shrimp, clam, mussel, squid, crab — good for 4-5.", zh: "白虾、河虾、花甲、青口贝、鱿鱼、螃蟹 — 4-5人份。" },
+    img: "assets/img/dishes/page11.jpg", tags: ["recommended", "seafood", "sharing"],
+    variants: [{ label: { th: "XL", en: "XL", zh: "XL" }, price: 599 }]
+  },
+
+  // ---------- BANG BANG COMBOS ----------
+  {
+    id: "bb-shrimp-clam", category: "bangbang",
+    name: { th: "กุ้งขาว + หอยลาย ซอสแบงแบง", en: "Shrimp & Clam with Bang Bang Sauce", zh: "白虾+花甲 Bang Bang 酱" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page12.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "ชุด", en: "set", zh: "份" }, price: 299 }]
+  },
+  {
+    id: "bb-shrimp-mussel", category: "bangbang",
+    name: { th: "กุ้งขาว + หอยแมลงภู่ ซอสแบงแบง", en: "Shrimp & Mussel with Bang Bang Sauce", zh: "白虾+青口贝 Bang Bang 酱" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page12.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "ชุด", en: "set", zh: "份" }, price: 299 }]
+  },
+  {
+    id: "bb-clam-mussel", category: "bangbang",
+    name: { th: "หอยลาย + หอยแมลงภู่ ซอสแบงแบง (2 หอย)", en: "Clam & Mussel with Bang Bang Sauce", zh: "花甲+青口贝 Bang Bang 酱" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page13.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "ชุด", en: "set", zh: "份" }, price: 299 }]
+  },
+  {
+    id: "bb-shrimp-rivershrimp", category: "bangbang",
+    name: { th: "กุ้งขาว + กุ้งแม่น้ำ ซอสแบงแบง (2 กุ้ง)", en: "Shrimp & River Shrimp with Bang Bang Sauce", zh: "白虾+河虾 Bang Bang 酱" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page13.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "ชุด", en: "set", zh: "份" }, price: 399 }]
+  },
+  {
+    id: "bb-shrimp-squid", category: "bangbang",
+    name: { th: "กุ้งขาว + ปลาหมึก ซอสแบงแบง", en: "Shrimp & Squid with Bang Bang Sauce", zh: "白虾+鱿鱼 Bang Bang 酱" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page13.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "ชุด", en: "set", zh: "份" }, price: 299 }]
+  },
+
+  // ---------- APPETIZERS ----------
+  {
+    id: "french-fries", category: "appetizer",
+    name: { th: "เฟรนช์ฟรายส์", en: "French Fries", zh: "炸薯条" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page16.jpg", tags: ["friedsnack", "vegetarian"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 69 }]
+  },
+  {
+    id: "chicken-special-sauce", category: "appetizer",
+    name: { th: "ไก่ทอดเคลือบซอสสูตรพิเศษ", en: "Chicken with Special Sauce", zh: "特制酱炸鸡" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page16.jpg", tags: ["friedsnack", "chicken"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 109 }]
+  },
+  {
+    id: "cheese-ball", category: "appetizer",
+    name: { th: "ชีสบอล", en: "Cheese Ball", zh: "芝士球" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page16.jpg", tags: ["friedsnack", "vegetarian"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 79 }]
+  },
+  {
+    id: "chin-shrimp", category: "appetizer",
+    name: { th: "ขาต้มกุ้งทอด", en: "Chin Shrimp (Fried Shrimp Legs)", zh: "炸虾腿酥" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page17.jpg", tags: ["friedsnack", "seafood"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 79 }]
+  },
+  {
+    id: "karage-chicken", category: "appetizer",
+    name: { th: "ไก่คาราเกะ", en: "Karage Chicken", zh: "日式唐扬炸鸡" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page17.jpg", tags: ["friedsnack", "chicken"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 99 }]
+  },
+  {
+    id: "fried-karamari", category: "appetizer",
+    name: { th: "หมึกชุบแป้งทอด", en: "Fried Karamari (Calamari)", zh: "炸鱿鱼圈" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page17.jpg", tags: ["friedsnack", "seafood"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 99 }]
+  },
+  {
+    id: "corn-cheese", category: "appetizer",
+    name: { th: "คอร์นชีส", en: "Corn Cheese", zh: "芝士玉米杯" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page17.jpg", tags: ["bestseller", "vegetarian"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 60 }]
+  },
+
+  // ---------- RICE & NOODLE SPECIALS ----------
+  {
+    id: "stir-fried-mama", category: "rice",
+    name: { th: "ผัดมาม่าซอสกุ้งถัง ไข่กุ้ง", en: "Stir Fried Mama Noodles with Koong Tung Sauce & Shrimp Roe", zh: "虾酱炒泡面配虾籽" },
+    desc: { th: "ผัดมาม่าซอสกุ้งถังต้นตำรับ โรยไข่กุ้ง", en: "Instant noodles stir-fried in our original Bang Bang sauce, topped with shrimp roe.", zh: "用招牌 Bang Bang 酱炒泡面，撒虾籽。" },
+    img: "assets/img/dishes/page18.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 159 }]
+  },
+  {
+    id: "fried-rice-shrimp", category: "rice",
+    name: { th: "ข้าวผัดกุ้งโบราณ ไข่ดาว", en: "Fried Rice with Shrimp, Fried Egg", zh: "古早味虾仁炒饭配煎蛋" },
+    desc: { th: "ข้าวผัดกุ้งสูตรโบราณ เสิร์ฟพร้อมไข่ดาวและซอสซีฟู้ด", en: "Old-style shrimp fried rice topped with a fried egg and seafood sauce.", zh: "古早风味虾仁炒饭，配煎蛋与海鲜酱。" },
+    img: "assets/img/dishes/page19.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 159 }]
+  },
+  {
+    id: "basil-shrimp", category: "rice",
+    name: { th: "ผัดกะเพรากุ้งถัง", en: "Fried Stir Basil with Shrimp", zh: "打抛虾（罗勒炒虾）" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page20.jpg", tags: ["new", "seafood"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 119 }]
+  },
+  {
+    id: "rice-shrimp-clam", category: "rice",
+    name: { th: "ข้าวหน้ากุ้งถัง หอยลาย ซอสแบงแบง", en: "Rice with Shrimp & Clam, Bang Bang Sauce", zh: "虾+花甲盖饭 Bang Bang 酱" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page20.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 139 }]
+  },
+  {
+    id: "rice-mussel-clam", category: "rice",
+    name: { th: "ข้าวหน้าหอยแมลงภู่ หอยลาย ซอสแบงแบง", en: "Rice with Mussel & Clam, Bang Bang Sauce", zh: "青口贝+花甲盖饭 Bang Bang 酱" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page20.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 139 }]
+  },
+  {
+    id: "rice-mixed-seafood", category: "rice",
+    name: { th: "ข้าวหน้าชุดรวมซีฟู้ด ซอสแบงแบง", en: "Rice with Mixed Seafood, Bang Bang Sauce", zh: "海鲜拼盘盖饭 Bang Bang 酱" },
+    desc: { th: "หอยแมลงภู่ กุ้งแม่น้ำ ปลาหมึก", en: "Mussel, river shrimp, squid.", zh: "青口贝、河虾、鱿鱼。" },
+    img: "assets/img/dishes/page21.jpg", tags: ["seafood", "sharing"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 229 }]
+  },
+  {
+    id: "rice-squid-clam", category: "rice",
+    name: { th: "ข้าวหน้าปลาหมึก หอยลาย ซอสแบงแบง", en: "Rice with Squid & Clam, Bang Bang Sauce", zh: "鱿鱼+花甲盖饭 Bang Bang 酱" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page21.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 139 }]
+  },
+  {
+    id: "rice-karage", category: "rice",
+    name: { th: "ข้าวหน้าไก่คาราเกะ", en: "Rice with Karage Chicken", zh: "日式炸鸡盖饭" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page21.jpg", tags: ["chicken"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 119 }]
+  },
+
+  // ---------- SPECIAL SETS ----------
+  {
+    id: "set-a-korean-shrimp", category: "set",
+    name: { th: "เซ็ต A: กุ้งดองซีอิ๊วเกาหลี", en: "Set A: Korean Soy Sauce Pickled Shrimp", zh: "A套餐：韩式酱油腌虾" },
+    desc: { th: "กุ้งดองซีอิ๊วเกาหลี พร้อมสาหร่ายทอดและข้าวสวยโรยงา", en: "Korean soy-marinated shrimp with fried seaweed and steamed rice with roasted sesame.", zh: "韩式酱油腌虾，配炸海苔与芝麻香米饭。" },
+    img: "assets/img/dishes/page22.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "เซ็ต", en: "set", zh: "套餐" }, price: 199 }]
+  },
+  {
+    id: "set-b-minibox", category: "set",
+    name: { th: "เซ็ต B: มินิบ็อกซ์กุ้งถัง", en: "Set B: Mini Box Koong Tung", zh: "B套餐：迷你虾桶盒" },
+    desc: { th: "กุ้งถังพร้อมทาน พร้อมสาหร่ายและข้าวสวยโรยสาหร่าย", en: "Ready-to-eat mini Koong Tung with seaweed and steamed rice topped with seaweed.", zh: "即食迷你虾桶，配海苔与海苔香米饭。" },
+    img: "assets/img/dishes/page22.jpg", tags: ["seafood"],
+    variants: [{ label: { th: "เซ็ต", en: "set", zh: "套餐" }, price: 219 }]
+  },
+  {
+    id: "set-c-2styles", category: "set",
+    name: { th: "เซ็ต C: กุ้ง 2 สไตล์", en: "Set C: 2 Styles Shrimp", zh: "C套餐：双味虾" },
+    desc: { th: "กุ้งผัดซอสต้นตำรับในถัง และกุ้งดองซีอิ๊วเกาหลี พร้อมสาหร่ายและข้าวสวยโรยงา", en: "Stir-fried shrimp with original bucket sauce plus Korean soy-marinated shrimp, with seaweed and sesame rice.", zh: "招牌虾桶酱炒虾 + 韩式酱油腌虾，配海苔与芝麻香米饭。" },
+    img: "assets/img/dishes/page22.jpg", tags: ["seafood", "sharing"],
+    variants: [{ label: { th: "เซ็ต", en: "set", zh: "套餐" }, price: 369 }]
+  },
+
+  // ---------- ADD-ONS ----------
+  {
+    id: "addon-rice", category: "addon",
+    name: { th: "ข้าวสวย", en: "Jasmine Rice", zh: "香米饭" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page15.jpg", tags: ["vegetarian"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 15 }]
+  },
+  {
+    id: "addon-salad", category: "addon",
+    name: { th: "สลัดผัก", en: "Salad", zh: "沙拉" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page15.jpg", tags: ["vegetarian"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 39 }]
+  },
+  {
+    id: "addon-roti", category: "addon",
+    name: { th: "โรตี", en: "Roti", zh: "印度煎饼" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page15.jpg", tags: ["vegetarian"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 39 }]
+  },
+  {
+    id: "addon-corn", category: "addon",
+    name: { th: "ข้าวโพดหวาน", en: "Corn", zh: "甜玉米" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page15.jpg", tags: ["vegetarian"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 20 }]
+  },
+  {
+    id: "addon-spaghetti", category: "addon",
+    name: { th: "เส้นสปาเก็ตตี้", en: "Spaghetti", zh: "意大利面" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page15.jpg", tags: ["vegetarian"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 39 }]
+  },
+  {
+    id: "addon-garlic-bread", category: "addon",
+    name: { th: "ขนมปังกระเทียมกรอบ", en: "Garlic Bread", zh: "蒜香面包" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page15.jpg", tags: ["vegetarian"],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 49 }]
+  },
+  {
+    id: "addon-sausage", category: "addon",
+    name: { th: "ไส้กรอกเยอรมัน ราดซอส", en: "Sausage", zh: "德式香肠" },
+    desc: { th: "", en: "", zh: "" }, img: "assets/img/dishes/page15.jpg", tags: [],
+    variants: [{ label: { th: "จาน", en: "plate", zh: "份" }, price: 39 }]
+  },
+
+  // ---------- BEVERAGES ----------
+  {
+    id: "bev-soda", category: "beverage",
+    name: { th: "น้ำอัดลม", en: "Soda", zh: "汽水" },
+    desc: { th: "", en: "", zh: "" }, img: "", tags: ["vegetarian"],
+    variants: [{ label: { th: "แก้ว", en: "glass", zh: "杯" }, price: 20 }]
+  },
+  {
+    id: "bev-water", category: "beverage",
+    name: { th: "น้ำแร่", en: "Water", zh: "矿泉水" },
+    desc: { th: "", en: "", zh: "" }, img: "", tags: ["vegetarian"],
+    variants: [{ label: { th: "ขวด", en: "bottle", zh: "瓶" }, price: 20 }]
+  },
+  {
+    id: "bev-chrysanthemum", category: "beverage",
+    name: { th: "น้ำเก็กฮวย", en: "Chrysanthemum Tea", zh: "菊花茶" },
+    desc: { th: "", en: "", zh: "" }, img: "", tags: ["vegetarian"],
+    variants: [{ label: { th: "แก้ว", en: "glass", zh: "杯" }, price: 39 }]
+  },
+  {
+    id: "bev-lemon-tea", category: "beverage",
+    name: { th: "ชามะนาว", en: "Lemon Iced Tea", zh: "柠檬冰茶" },
+    desc: { th: "", en: "", zh: "" }, img: "", tags: ["vegetarian"],
+    variants: [{ label: { th: "แก้ว", en: "glass", zh: "杯" }, price: 39 }]
+  },
+  {
+    id: "bev-ice", category: "beverage",
+    name: { th: "น้ำแข็ง", en: "Ice", zh: "冰块" },
+    desc: { th: "", en: "", zh: "" }, img: "", tags: ["vegetarian"],
+    variants: [{ label: { th: "แก้ว", en: "glass", zh: "杯" }, price: 3 }]
+  },
+  {
+    id: "bev-beer-1", category: "beverage",
+    name: { th: "เบียร์ช้าง / ลีโอ / คาราบาว", en: "Chang / Leo / Carabao Beer", zh: "象牌 / 狮牌 / 水牛啤酒" },
+    desc: { th: "", en: "", zh: "" }, img: "", tags: ["alcohol"],
+    variants: [{ label: { th: "ขวด", en: "bottle", zh: "瓶" }, price: 99 }]
+  },
+  {
+    id: "bev-beer-2", category: "beverage",
+    name: { th: "เบียร์สิงห์ / ตะวันแดง", en: "Singha / Tawandang Beer", zh: "Singha / Tawandang 啤酒" },
+    desc: { th: "", en: "", zh: "" }, img: "", tags: ["alcohol"],
+    variants: [{ label: { th: "ขวด", en: "bottle", zh: "瓶" }, price: 110 }]
+  }
+];
