@@ -5,11 +5,24 @@ No online ordering — view only, for QR-on-table use.
 
 **Live site:** https://koongtung.github.io/koongtung-menu/
 **Print QR page:** https://koongtung.github.io/koongtung-menu/qr.html
+**Admin (edit menu/prices/images):** https://koongtung.github.io/koongtung-menu/admin.html
 
-## Update the menu or prices
+## Update the menu, prices, or images (recommended: Admin panel)
 
-1. Edit `assets/js/menu-data.js` (plain JS array — one item per dish, with
-   Thai/English/Chinese name, description, price(s), tags, category and image).
+Open `admin.html` on the live site and log in with a GitHub Access Token
+(the panel has step-by-step instructions to create one, scoped to just this
+repo, "Contents: read and write" only). From there you can add/edit/delete
+menu items, change prices, tags, category, and upload photos — every save
+commits straight to this repo and GitHub Pages redeploys in ~1 minute.
+
+The token is stored only in your own browser (`localStorage`) and is sent
+directly to GitHub's API — never to any third party. Treat it like a
+password; anyone with a valid write-scoped token can edit the menu.
+
+## Update the menu manually (fallback / bulk edits)
+
+1. Edit `assets/data/menu-data.json` (one object per dish, with
+   Thai/English/Chinese name, description, price(s), tags, category and image path).
 2. Save, then `git add -A && git commit -m "update menu" && git push`.
    GitHub Pages redeploys automatically in ~1 minute. No build step required.
 

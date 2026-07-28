@@ -3,6 +3,7 @@
 
   var LANGS = ["th", "en", "zh"];
   var LANG_LABELS = { th: "ไทย", en: "EN", zh: "中文" };
+  var RESTAURANT, CATEGORIES, TAGS, ITEMS;
   var state = {
     lang: localStorage.getItem("kt-lang") || "th",
     search: "",
@@ -317,8 +318,23 @@
     renderFooter();
   }
 
+  function loadData() {
+    return fetch("assets/data/menu-data.json", { cache: "no-cache" })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        RESTAURANT = data.restaurant;
+        CATEGORIES = data.categories;
+        TAGS = data.tags;
+        ITEMS = data.items;
+      });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     wireControls();
-    renderAll();
+    loadData().then(renderAll).catch(function (err) {
+      document.getElementById("menu-content").innerHTML =
+        '<div class="empty-state"><div class="emoji">⚠️</div><p>Failed to load menu data.</p></div>';
+      console.error(err);
+    });
   });
 })();

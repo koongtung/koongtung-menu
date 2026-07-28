@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Koong Tung – หลังบ้าน (Admin)</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/img/brand/logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+<!-- ---------------- Login screen ---------------- -->
+<div class="login-wrap" id="login-screen">
+  <div class="login-card">
+    <img src="assets/img/brand/logo.jpg" alt="Koong Tung">
+    <h1>หลังบ้าน Koong Tung</h1>
+    <p class="sub">เข้าสู่ระบบด้วย GitHub Access Token เพื่อแก้ไขเมนู ราคา และรูปภาพ</p>
+
+    <div class="login-error" id="login-error"></div>
+
+    <form id="login-form">
+      <label for="token-input">GitHub Access Token</label>
+      <input type="password" id="token-input" autocomplete="off" placeholder="github_pat_xxxxxxxxxxxxxxxx" required>
+      <button type="submit" class="primary" id="login-btn">เข้าสู่ระบบ</button>
+    </form>
+
+    <button class="help-toggle" id="help-toggle">วิธีสร้าง Access Token (ทำครั้งเดียว) ▾</button>
+    <div class="help-box" id="help-box">
+      <b>สร้าง Token แบบจำกัดสิทธิ์เฉพาะ repo นี้ (ปลอดภัยสุด):</b>
+      <ol>
+        <li>ไปที่ <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> (ต้อง login ด้วยบัญชี koongtung ก่อน)</li>
+        <li>Token name: ใส่ว่า <code>koongtung-menu-admin</code></li>
+        <li>Expiration: เลือกตามสะดวก (แนะนำ 1 ปี แล้วค่อยสร้างใหม่)</li>
+        <li>Repository access: เลือก <b>"Only select repositories"</b> → เลือก <code>koongtung-menu</code></li>
+        <li>Permissions → Repository permissions → <b>Contents</b> → เปลี่ยนเป็น <b>Read and write</b></li>
+        <li>กด <b>Generate token</b> ด้านล่างสุด แล้วคัดลอกโทเคน (ขึ้นต้นด้วย <code>github_pat_</code>) มาใส่ในช่องด้านบน</li>
+      </ol>
+      <b>คำเตือน:</b> อย่าแชร์ token นี้ให้ใครที่ไม่ใช่แอดมิน เพราะเทียบเท่ารหัสผ่านที่แก้เว็บได้ ระบบเก็บ token ไว้ในเบราว์เซอร์นี้เท่านั้น ไม่ได้ส่งไปที่ไหนอื่นนอกจาก GitHub โดยตรง
+    </div>
+  </div>
+</div>
+
+<!-- ---------------- Admin app ---------------- -->
+<div id="admin-app" style="display:none;">
+  <header class="admin-header">
+    <img src="assets/img/brand/logo.jpg" alt="logo">
+    <h1>หลังบ้าน · จัดการเมนู</h1>
+    <a class="view-site" href="index.html" target="_blank" rel="noopener">👁️ ดูเว็บจริง</a>
+    <button class="logout" id="logout-btn">ออกจากระบบ</button>
+  </header>
+
+  <main class="admin-main">
+    <div class="admin-toolbar">
+      <input type="search" id="admin-search" placeholder="ค้นหาเมนู...">
+      <button class="btn primary" id="add-item-btn">+ เพิ่มเมนูใหม่</button>
+    </div>
+    <div id="admin-list"></div>
+  </main>
+</div>
+
+<!-- ---------------- Edit modal ---------------- -->
+<div class="modal-backdrop" id="modal-backdrop">
+  <div class="edit-modal">
+    <h2 id="edit-title">แก้ไขเมนู</h2>
+    <form id="edit-form">
+
+      <div class="field-group">
+        <label class="group-label">รูปภาพเมนู</label>
+        <div class="img-upload-row">
+          <div id="f-img-preview" class="no-img">🥤</div>
+          <div>
+            <input type="file" id="f-image-input" accept="image/*">
+            <div style="font-size:.72rem;color:#7a6f5d;margin-top:4px;">อัปโหลดแล้วรูปจะถูกย่อขนาดอัตโนมัติเพื่อให้เว็บโหลดเร็ว</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-row" style="margin-bottom:16px;">
+        <div>
+          <label>หมวดหมู่</label>
+          <select id="f-category"></select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="group-label">ชื่อเมนู</label>
+        <div class="lang-inputs">
+          <div class="row"><span class="tag">TH</span><input id="f-name-th" placeholder="ชื่อภาษาไทย"></div>
+          <div class="row"><span class="tag">EN</span><input id="f-name-en" placeholder="English name"></div>
+          <div class="row"><span class="tag">中文</span><input id="f-name-zh" placeholder="中文名称"></div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="group-label">รายละเอียด (ไม่บังคับ)</label>
+        <div class="lang-inputs">
+          <div class="row"><span class="tag">TH</span><textarea id="f-desc-th" placeholder="คำอธิบายภาษาไทย"></textarea></div>
+          <div class="row"><span class="tag">EN</span><textarea id="f-desc-en" placeholder="English description"></textarea></div>
+          <div class="row"><span class="tag">中文</span><textarea id="f-desc-zh" placeholder="中文说明"></textarea></div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="group-label">ราคา / ตัวเลือกขนาด</label>
+        <div id="f-variants"></div>
+        <button type="button" class="btn ghost" id="f-add-variant" style="margin-top:4px;">+ เพิ่มตัวเลือกราคา</button>
+      </div>
+
+      <div class="field-group">
+        <label class="group-label">แท็ก</label>
+        <div class="tag-checks" id="f-tags"></div>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn danger" id="f-delete-btn">🗑️ ลบเมนูนี้</button>
+        <div style="display:flex;gap:8px;">
+          <button type="button" class="btn ghost" id="f-cancel-btn">ยกเลิก</button>
+          <button type="submit" class="btn primary" id="f-save-btn">บันทึก</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="assets/js/admin.js"></script>
+</body>
+</html>
