@@ -54,6 +54,7 @@
   <main class="admin-main">
     <div class="admin-toolbar">
       <input type="search" id="admin-search" placeholder="ค้นหาเมนู...">
+      <button class="btn ghost" id="manage-categories-btn">🗂️ จัดการหมวดหมู่</button>
       <button class="btn primary" id="add-item-btn">+ เพิ่มเมนูใหม่</button>
     </div>
     <div id="admin-list"></div>
@@ -121,6 +122,22 @@
         </div>
       </div>
     </form>
+  </div>
+</div>
+
+<!-- ---------------- Category manager modal ---------------- -->
+<div class="modal-backdrop" id="category-modal-backdrop">
+  <div class="edit-modal">
+    <h2>จัดการหมวดหมู่</h2>
+    <div id="category-rows"></div>
+    <button type="button" class="btn ghost" id="c-add-category" style="margin-top:6px;">+ เพิ่มหมวดหมู่ใหม่</button>
+    <div class="modal-actions">
+      <div></div>
+      <div style="display:flex;gap:8px;">
+        <button type="button" class="btn ghost" id="c-cancel-btn">ยกเลิก</button>
+        <button type="button" class="btn primary" id="c-save-btn">บันทึกหมวดหมู่</button>
+      </div>
+    </div>
   </div>
 </div>
 

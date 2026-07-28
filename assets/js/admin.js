@@ -240,6 +240,94 @@
     return id;
   }
 
+  // ---------------- Category manager ----------------
+  function itemCountForCategory(catId) {
+    return data.items.filter(function (i) { return i.category === catId; }).length;
+  }
+
+  function openCategoryManager() {
+    renderCategoryRows();
+    document.getElementById("category-modal-backdrop").classList.add("open");
+  }
+
+  function closeCategoryManager() {
+    document.getElementById("category-modal-backdrop").classList.remove("open");
+  }
+
+  function categoryRowEl(cat) {
+    var row = document.createElement("div");
+    row.className = "category-row";
+    row.dataset.id = cat.id;
+    var count = itemCountForCategory(cat.id);
+    row.innerHTML =
+      '<input class="c-icon" data-f="icon" value="' + escapeHtml(cat.icon || "") + '" placeholder="🍤">' +
+      '<input class="c-name" data-f="th" value="' + escapeHtml(cat.name.th) + '" placeholder="ชื่อไทย">' +
+      '<input class="c-name" data-f="en" value="' + escapeHtml(cat.name.en) + '" placeholder="English">' +
+      '<input class="c-name" data-f="zh" value="' + escapeHtml(cat.name.zh) + '" placeholder="中文">' +
+      '<button type="button" class="c-delete" title="ลบหมวดหมู่">✕</button>' +
+      '<div class="c-count">' + count + ' เมนูในหมวดนี้' + (count > 0 ? " — ต้องย้ายเมนูออกก่อนจึงจะลบได้" : "") + '</div>';
+    var delBtn = row.querySelector(".c-delete");
+    delBtn.disabled = count > 0;
+    delBtn.onclick = function () { row.remove(); };
+    return row;
+  }
+
+  function renderCategoryRows() {
+    var wrap = document.getElementById("category-rows");
+    wrap.innerHTML = "";
+    data.categories.forEach(function (cat) { wrap.appendChild(categoryRowEl(cat)); });
+  }
+
+  function addCategoryRow() {
+    var wrap = document.getElementById("category-rows");
+    wrap.appendChild(categoryRowEl({ id: "__new__" + Date.now(), icon: "🍽️", name: { th: "", en: "", zh: "" } }));
+  }
+
+  function saveCategories() {
+    var rows = Array.prototype.slice.call(document.querySelectorAll("#category-rows .category-row"));
+    var newCategories = [];
+    for (var i = 0; i < rows.length; i++) {
+      var row = rows[i];
+      var nameTh = row.querySelector('[data-f="th"]').value.trim();
+      var nameEn = row.querySelector('[data-f="en"]').value.trim();
+      var nameZh = row.querySelector('[data-f="zh"]').value.trim();
+      var icon = row.querySelector('[data-f="icon"]').value.trim() || "🍽️";
+      if (!nameTh && !nameEn) continue; // skip empty rows
+      var origId = row.dataset.id;
+      var isNewRow = origId.indexOf("__new__") === 0;
+      var id = isNewRow ? uniqueCategoryId(slugify(nameEn || nameTh), newCategories) : origId;
+      newCategories.push({ id: id, icon: icon, name: { th: nameTh, en: nameEn || nameTh, zh: nameZh || nameEn || nameTh } });
+    }
+    if (!newCategories.length) { toast("ต้องมีอย่างน้อย 1 หมวดหมู่", true); return; }
+
+    var btn = document.getElementById("c-save-btn");
+    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner"></span>กำลังบันทึก...';
+
+    data.categories = newCategories;
+    saveData("Update categories")
+      .then(function () {
+        toast("บันทึกหมวดหมู่เรียบร้อย");
+        closeCategoryManager();
+        renderList();
+      })
+      .catch(function (err) {
+        toast("บันทึกไม่สำเร็จ: " + err.message, true);
+        return loadData().then(renderList);
+      })
+      .finally(function () {
+        btn.disabled = false;
+        btn.textContent = "บันทึกหมวดหมู่";
+      });
+  }
+
+  function uniqueCategoryId(base, alreadyAdded) {
+    var existing = data.categories.map(function (c) { return c.id; }).concat(alreadyAdded.map(function (c) { return c.id; }));
+    var id = base, n = 2;
+    while (existing.indexOf(id) !== -1) { id = base + "-" + n; n++; }
+    return id;
+  }
+
   var pendingImageDataUrl = null; // {base64, filename} set when a new image is chosen but not yet saved
 
   function openEdit(itemId) {
@@ -463,6 +551,14 @@
     });
     document.getElementById("modal-backdrop").addEventListener("click", function (e) {
       if (e.target === e.currentTarget) closeEdit();
+    });
+
+    document.getElementById("manage-categories-btn").addEventListener("click", openCategoryManager);
+    document.getElementById("c-add-category").addEventListener("click", addCategoryRow);
+    document.getElementById("c-save-btn").addEventListener("click", saveCategories);
+    document.getElementById("c-cancel-btn").addEventListener("click", closeCategoryManager);
+    document.getElementById("category-modal-backdrop").addEventListener("click", function (e) {
+      if (e.target === e.currentTarget) closeCategoryManager();
     });
 
     if (token) {
