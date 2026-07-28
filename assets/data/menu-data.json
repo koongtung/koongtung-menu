@@ -53,7 +53,7 @@
       "icon": "🦐",
       "name": {
         "th": "ซิกเนเจอร์กุ้งถัง",
-        "en": "Signature Koong Tung",
+        "en": "Signature Koongtung",
         "zh": "招牌虾桶"
       }
     },
@@ -61,8 +61,8 @@
       "id": "seafood",
       "icon": "🦀",
       "name": {
-        "th": "ซีฟู้ดสด เลือกเดี่ยว",
-        "en": "Fresh Seafood (à la carte)",
+        "th": "ชุดเลือกตามวัตถุดิบ",
+        "en": "Main",
         "zh": "新鲜海鲜（单点）"
       }
     },
@@ -97,8 +97,8 @@
       "id": "rice",
       "icon": "🍚",
       "name": {
-        "th": "ข้าว & เส้น พิเศษ",
-        "en": "Rice & Noodle Specials",
+        "th": "เครื่องเคียง",
+        "en": "Side Order / Add on",
         "zh": "特色饭面"
       }
     },
