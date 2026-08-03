@@ -196,7 +196,7 @@
         "en": "American-style boiled white shrimp served with our original Bang Bang sauce. Choose your spice level.",
         "zh": "美式水煮白虾，配招牌 Bang Bang 酱，可选辣度。"
       },
-      "img": "assets/img/dishes/page8.jpg",
+      "img": "assets/img/dishes/wn-koong-tung.jpg",
       "tags": [
         "recommended",
         "bestseller",
@@ -251,7 +251,7 @@
         "en": "Fresh sea crab served with special sauce.",
         "zh": "新鲜肉蟹，配特制酱汁。"
       },
-      "img": "assets/img/dishes/page9.jpg",
+      "img": "assets/img/dishes/wn-fresh-crab.jpg",
       "tags": [
         "seafood"
       ],
@@ -287,7 +287,7 @@
         "en": "Fresh river shrimp with special sauce.",
         "zh": "新鲜大河虾，配特制酱汁。"
       },
-      "img": "assets/img/dishes/page9.jpg",
+      "img": "assets/img/dishes/wn-fresh-river-shrimp.jpg",
       "tags": [
         "seafood"
       ],
@@ -315,7 +315,7 @@
         "en": "Large fresh mussels with special sauce.",
         "zh": "大只新鲜青口贝，配特制酱汁。"
       },
-      "img": "assets/img/dishes/page9.jpg",
+      "img": "assets/img/dishes/wn-fresh-mussel.jpg",
       "tags": [
         "seafood"
       ],
@@ -359,7 +359,7 @@
         "en": "Fresh squid 400g with special sauce.",
         "zh": "新鲜鱿鱼400克，配特制酱汁。"
       },
-      "img": "assets/img/dishes/page9.jpg",
+      "img": "assets/img/dishes/wn-fresh-squid.jpg",
       "tags": [
         "seafood"
       ],
@@ -387,7 +387,7 @@
         "en": "Fresh clams with special sauce.",
         "zh": "新鲜花甲，配特制酱汁。"
       },
-      "img": "assets/img/dishes/page9.jpg",
+      "img": "assets/img/dishes/wn-fresh-clam.jpg",
       "tags": [
         "seafood"
       ],
@@ -415,7 +415,7 @@
         "en": "Shrimp, river shrimp, clam, mussel — good for 2.",
         "zh": "白虾、河虾、花甲、青口贝 — 2人份。"
       },
-      "img": "assets/img/dishes/page10.jpg",
+      "img": "assets/img/dishes/wn-mixed-seafood-m.jpg",
       "tags": [
         "seafood",
         "sharing"
@@ -444,7 +444,7 @@
         "en": "Shrimp, river shrimp, clam, mussel, squid — good for 3-4.",
         "zh": "白虾、河虾、花甲、青口贝、鱿鱼 — 3-4人份。"
       },
-      "img": "assets/img/dishes/page10.jpg",
+      "img": "assets/img/dishes/wn-mixed-seafood-l-squid.jpg",
       "tags": [
         "seafood",
         "sharing"
@@ -473,7 +473,7 @@
         "en": "Shrimp, river shrimp, clam, mussel, crab or squid — good for 3-4.",
         "zh": "白虾、河虾、花甲、青口贝、螃蟹或鱿鱼 — 3-4人份。"
       },
-      "img": "assets/img/dishes/page11.jpg",
+      "img": "assets/img/dishes/wn-mixed-seafood-l-crab.jpg",
       "tags": [
         "seafood",
         "sharing"
@@ -502,7 +502,7 @@
         "en": "Shrimp, river shrimp, clam, mussel, squid, crab — good for 4-5.",
         "zh": "白虾、河虾、花甲、青口贝、鱿鱼、螃蟹 — 4-5人份。"
       },
-      "img": "assets/img/dishes/page11.jpg",
+      "img": "assets/img/dishes/wn-mixed-seafood-xl.jpg",
       "tags": [
         "recommended",
         "seafood",
@@ -528,11 +528,11 @@
         "zh": "白虾+花甲 Bang Bang 酱"
       },
       "desc": {
-        "th": "",
-        "en": "",
-        "zh": ""
+        "th": "กุ้งขาวและหอยลาย เสิร์ฟพร้อมซอสแบงแบงต้นตำรับ เลือกระดับความเผ็ดได้ แถมน้ำจิ้มซีฟู้ดและผ้ากันเปื้อน",
+        "en": "White shrimp and clam served with our original Bang Bang sauce. Choose your spice level; comes with seafood dip and a bib.",
+        "zh": "白虾和花甲，配招牌 Bang Bang 酱，可选辣度，附赠海鲜蘸酱和围裙。"
       },
-      "img": "assets/img/dishes/page12.jpg",
+      "img": "assets/img/dishes/wn-bb-shrimp-clam.jpg",
       "tags": [
         "seafood"
       ],
@@ -556,11 +556,11 @@
         "zh": "白虾+青口贝 Bang Bang 酱"
       },
       "desc": {
-        "th": "",
-        "en": "",
-        "zh": ""
+        "th": "กุ้งขาวและหอยแมลงภู่ เสิร์ฟพร้อมซอสแบงแบงต้นตำรับ เลือกระดับความเผ็ดได้ แถมน้ำจิ้มซีฟู้ดและผ้ากันเปื้อน",
+        "en": "White shrimp and mussel served with our original Bang Bang sauce. Choose your spice level; comes with seafood dip and a bib.",
+        "zh": "白虾和青口贝，配招牌 Bang Bang 酱，可选辣度，附赠海鲜蘸酱和围裙。"
       },
-      "img": "assets/img/dishes/page12.jpg",
+      "img": "assets/img/dishes/wn-bb-shrimp-mussel.jpg",
       "tags": [
         "seafood"
       ],
@@ -584,11 +584,11 @@
         "zh": "花甲+青口贝 Bang Bang 酱"
       },
       "desc": {
-        "th": "",
-        "en": "",
-        "zh": ""
+        "th": "หอยลายและหอยแมลงภู่ เสิร์ฟพร้อมซอสแบงแบงต้นตำรับ เลือกระดับความเผ็ดได้ แถมน้ำจิ้มซีฟู้ดและผ้ากันเปื้อน",
+        "en": "Clam and mussel served with our original Bang Bang sauce. Choose your spice level; comes with seafood dip and a bib.",
+        "zh": "花甲和青口贝，配招牌 Bang Bang 酱，可选辣度，附赠海鲜蘸酱和围裙。"
       },
-      "img": "assets/img/dishes/page13.jpg",
+      "img": "assets/img/dishes/wn-bb-clam-mussel.jpg",
       "tags": [
         "seafood"
       ],
@@ -612,11 +612,11 @@
         "zh": "白虾+河虾 Bang Bang 酱"
       },
       "desc": {
-        "th": "",
-        "en": "",
-        "zh": ""
+        "th": "กุ้งขาวและกุ้งแม่น้ำ เสิร์ฟพร้อมซอสแบงแบงต้นตำรับ เลือกระดับความเผ็ดได้ แถมน้ำจิ้มซีฟู้ดและผ้ากันเปื้อน",
+        "en": "White shrimp and river shrimp served with our original Bang Bang sauce. Choose your spice level; comes with seafood dip and a bib.",
+        "zh": "白虾和河虾，配招牌 Bang Bang 酱，可选辣度，附赠海鲜蘸酱和围裙。"
       },
-      "img": "assets/img/dishes/page13.jpg",
+      "img": "assets/img/dishes/wn-bb-shrimp-rivershrimp.jpg",
       "tags": [
         "seafood"
       ],
@@ -640,11 +640,11 @@
         "zh": "白虾+鱿鱼 Bang Bang 酱"
       },
       "desc": {
-        "th": "",
-        "en": "",
-        "zh": ""
+        "th": "กุ้งขาวและปลาหมึก เสิร์ฟพร้อมซอสแบงแบงต้นตำรับ เลือกระดับความเผ็ดได้ แถมน้ำจิ้มซีฟู้ดและผ้ากันเปื้อน",
+        "en": "White shrimp and squid served with our original Bang Bang sauce. Choose your spice level; comes with seafood dip and a bib.",
+        "zh": "白虾和鱿鱼，配招牌 Bang Bang 酱，可选辣度，附赠海鲜蘸酱和围裙。"
       },
-      "img": "assets/img/dishes/page13.jpg",
+      "img": "assets/img/dishes/wn-bb-shrimp-squid.jpg",
       "tags": [
         "seafood"
       ],
@@ -672,7 +672,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page16.jpg",
+      "img": "assets/img/dishes/wn-french-fries.jpg",
       "tags": [
         "friedsnack",
         "vegetarian"
@@ -730,7 +730,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page16.jpg",
+      "img": "assets/img/dishes/wn-cheese-ball.jpg",
       "tags": [
         "friedsnack",
         "vegetarian"
@@ -759,7 +759,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page17.jpg",
+      "img": "assets/img/dishes/wn-chin-shrimp.jpg",
       "tags": [
         "friedsnack",
         "seafood"
@@ -788,7 +788,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page17.jpg",
+      "img": "assets/img/dishes/wn-karage-chicken.jpg",
       "tags": [
         "friedsnack",
         "chicken"
@@ -817,7 +817,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page17.jpg",
+      "img": "assets/img/dishes/wn-fried-karamari.jpg",
       "tags": [
         "friedsnack",
         "seafood"
@@ -846,7 +846,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page17.jpg",
+      "img": "assets/img/dishes/wn-corn-cheese.jpg",
       "tags": [
         "bestseller",
         "vegetarian"
@@ -875,7 +875,7 @@
         "en": "Instant noodles stir-fried in our original Bang Bang sauce, topped with shrimp roe.",
         "zh": "用招牌 Bang Bang 酱炒泡面，撒虾籽。"
       },
-      "img": "assets/img/dishes/page18.jpg",
+      "img": "assets/img/dishes/wn-stir-fried-mama.jpg",
       "tags": [
         "seafood"
       ],
@@ -903,7 +903,7 @@
         "en": "Old-style shrimp fried rice topped with a fried egg and seafood sauce.",
         "zh": "古早风味虾仁炒饭，配煎蛋与海鲜酱。"
       },
-      "img": "assets/img/dishes/page19.jpg",
+      "img": "assets/img/dishes/wn-fried-rice-shrimp.jpg",
       "tags": [
         "seafood"
       ],
@@ -956,11 +956,11 @@
         "zh": "虾+花甲盖饭 Bang Bang 酱"
       },
       "desc": {
-        "th": "",
-        "en": "",
-        "zh": ""
+        "th": "ข้าวสวยราดหน้ากุ้งถังซอสแบงแบงต้นตำรับ เสิร์ฟร้อนๆ สำหรับทาน 1-2 ท่าน",
+        "en": "Steamed rice topped with Koong Tung shrimp in our original Bang Bang sauce. Good for 1-2 people.",
+        "zh": "招牌 Bang Bang 酱虾盖饭，1-2人份。"
       },
-      "img": "assets/img/dishes/page20.jpg",
+      "img": "assets/img/dishes/wn-rice-shrimp-clam.jpg",
       "tags": [
         "seafood"
       ],
@@ -984,11 +984,11 @@
         "zh": "青口贝+花甲盖饭 Bang Bang 酱"
       },
       "desc": {
-        "th": "",
-        "en": "",
-        "zh": ""
+        "th": "ข้าวสวยราดหน้าหอยแมลงภู่ซอสแบงแบงต้นตำรับ เสิร์ฟร้อนๆ สำหรับทาน 1-2 ท่าน",
+        "en": "Steamed rice topped with mussel in our original Bang Bang sauce. Good for 1-2 people.",
+        "zh": "招牌 Bang Bang 酱青口贝盖饭，1-2人份。"
       },
-      "img": "assets/img/dishes/page20.jpg",
+      "img": "assets/img/dishes/wn-rice-mussel-clam.jpg",
       "tags": [
         "seafood"
       ],
@@ -1016,7 +1016,7 @@
         "en": "Mussel, river shrimp, squid.",
         "zh": "青口贝、河虾、鱿鱼。"
       },
-      "img": "assets/img/dishes/page21.jpg",
+      "img": "assets/img/dishes/wn-rice-mixed-seafood.jpg",
       "tags": [
         "seafood",
         "sharing"
@@ -1041,11 +1041,11 @@
         "zh": "鱿鱼+花甲盖饭 Bang Bang 酱"
       },
       "desc": {
-        "th": "",
-        "en": "",
-        "zh": ""
+        "th": "ข้าวสวยราดหน้าปลาหมึกซอสแบงแบงต้นตำรับ เสิร์ฟร้อนๆ สำหรับทาน 1-2 ท่าน",
+        "en": "Steamed rice topped with squid in our original Bang Bang sauce. Good for 1-2 people.",
+        "zh": "招牌 Bang Bang 酱鱿鱼盖饭，1-2人份。"
       },
-      "img": "assets/img/dishes/page21.jpg",
+      "img": "assets/img/dishes/wn-rice-squid-clam.jpg",
       "tags": [
         "seafood"
       ],
@@ -1069,11 +1069,11 @@
         "zh": "日式炸鸡盖饭"
       },
       "desc": {
-        "th": "",
-        "en": "",
-        "zh": ""
+        "th": "ข้าวสวยราดหน้าไก่คาราเกะสูตรลับ เสิร์ฟพร้อมมายองเนสญี่ปุ่นเข้มข้น",
+        "en": "Steamed rice topped with our secret-recipe karaage chicken, served with rich Japanese mayo.",
+        "zh": "秘制唐扬炸鸡盖饭，配浓郁日式蛋黄酱。"
       },
-      "img": "assets/img/dishes/page21.jpg",
+      "img": "assets/img/dishes/wn-rice-karage.jpg",
       "tags": [
         "chicken"
       ],
@@ -1101,7 +1101,7 @@
         "en": "Korean soy-marinated shrimp with fried seaweed and steamed rice with roasted sesame.",
         "zh": "韩式酱油腌虾，配炸海苔与芝麻香米饭。"
       },
-      "img": "assets/img/dishes/page22.jpg",
+      "img": "assets/img/dishes/wn-set-a-korean-shrimp.jpg",
       "tags": [
         "seafood"
       ],
@@ -1129,7 +1129,7 @@
         "en": "Ready-to-eat mini Koong Tung with seaweed and steamed rice topped with seaweed.",
         "zh": "即食迷你虾桶，配海苔与海苔香米饭。"
       },
-      "img": "assets/img/dishes/page22.jpg",
+      "img": "assets/img/dishes/wn-set-b-minibox.jpg",
       "tags": [
         "seafood"
       ],
@@ -1157,7 +1157,7 @@
         "en": "Stir-fried shrimp with original bucket sauce plus Korean soy-marinated shrimp, with seaweed and sesame rice.",
         "zh": "招牌虾桶酱炒虾 + 韩式酱油腌虾，配海苔与芝麻香米饭。"
       },
-      "img": "assets/img/dishes/page22.jpg",
+      "img": "assets/img/dishes/wn-set-c-2styles.jpg",
       "tags": [
         "seafood",
         "sharing"
@@ -1186,7 +1186,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page15.jpg",
+      "img": "assets/img/dishes/wn-addon-rice.jpg",
       "tags": [
         "vegetarian"
       ],
@@ -1214,7 +1214,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page15.jpg",
+      "img": "assets/img/dishes/wn-addon-salad.jpg",
       "tags": [
         "vegetarian"
       ],
@@ -1242,7 +1242,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page15.jpg",
+      "img": "assets/img/dishes/wn-addon-roti.jpg",
       "tags": [
         "vegetarian"
       ],
@@ -1270,7 +1270,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page15.jpg",
+      "img": "assets/img/dishes/wn-addon-corn.jpg",
       "tags": [
         "vegetarian"
       ],
@@ -1298,7 +1298,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page15.jpg",
+      "img": "assets/img/dishes/wn-addon-spaghetti.jpg",
       "tags": [
         "vegetarian"
       ],
@@ -1326,7 +1326,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page15.jpg",
+      "img": "assets/img/dishes/wn-addon-garlic-bread.jpg",
       "tags": [
         "vegetarian"
       ],
@@ -1354,7 +1354,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "assets/img/dishes/page15.jpg",
+      "img": "assets/img/dishes/wn-addon-sausage.jpg",
       "tags": [],
       "variants": [
         {
@@ -1380,7 +1380,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "",
+      "img": "assets/img/dishes/wn-bev-soda.jpg",
       "tags": [
         "vegetarian"
       ],
@@ -1408,7 +1408,7 @@
         "en": "",
         "zh": ""
       },
-      "img": "",
+      "img": "assets/img/dishes/wn-bev-water.jpg",
       "tags": [
         "vegetarian"
       ],
